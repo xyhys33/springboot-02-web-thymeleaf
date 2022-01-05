@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:color="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Title</title>
+</head>
+<body>
+<table border="2" cellpadding="0" cellspacing="0" width="600px" style="text-align: center">
+
+    <thead>
+    <tr>
+<!--        <td>index</td>-->
+        <td>count</td>
+        <td>id</td>
+        <td>name</td>
+        <td>age</td>
+
+    </tr>
+    </thead>
+    <tbody>
+<!--        <c:forEach items="${pageInfo.list}" var="star">-->
+    <tr th:each="star, istat:${pageInfo.list}">
+<!--        <td th:text="${istat.index}"></td>-->
+        <td th:text="${istat.count}"></td>
+        <td th:text="${star.Id}"></td>
+        <td th:text="${star.Name}"></td>
+        <td th:text="${star.Age}"></td>
+
+
+    </tr>
+
+
+
+    <!--    </c:forEach>-->
+    </tbody>
+
+
+
+</table>
+<span>
+    <a href="selectAll?pageNum=1">首页</a>
+</span>
+<!--<a href="selectAll?pageNum=${pageInfo.pageNum-1>0?pageInfo.pageNum-1:pageInfo.pageNum}">上一页</a>-->
+<span>
+    <a th:href="@{/star/selectAll(pageNum=${(pageInfo.pageNum)-1>0?(pageInfo.pageNum)-1:pageInfo.pageNum})}">上一页</a>
+</span>
+<span th:each="i:${#numbers.sequence(1,pageInfo.pages)}">
+        <a th:href="'selectAll?pageNum='+${i}" th:text="${i}"></a>
+</span>
+<span>
+    <a th:href="@{/star/selectAll(pageNum=${pageInfo.pageNum+1<(pageInfo.pages+1)?pageInfo.pageNum+1:pageInfo.pageNum})}">下一页</a>
+</span>
+<!--<a href="selectAll?pageNum=${pageInfo.pageNum+1<(pageInfo.pages+1)?pageInfo.pageNum+1:pageInfo.pageNum}">下一页</a>-->
+<span>
+<!--    <a href="selectAll?pageNum=3">尾页-->
+
+<a a th:href="'selectAll?pageNum='+${pageInfo.pages}">尾页</a>
+</span>
+<span>
+        <form action="listStars.html" method="get">
+          id:  <input type="text" name="id"><br>
+          name:  <input type="text" name="name"> <br>
+          age:  <input type="text" name="age"><br>
+        <input type="submit"  >
+        </form>
+<!-- <form action="listStars.html" method="get">-->
+<!--          id:  <input type="text" th:value ="*{id}"><br>-->
+<!--          name:  <input type="text" th:value ="*{name}"> <br>-->
+<!--          age:  <input type="text" th:value ="*{age}"><br>-->
+<!--        <input type="submit"  >-->
+<!--        </form>-->
+
+
+<!--    <a a th:href=@"'insert?id='+${id}'&name='+${name}'&age='${age}">插入</a>-->
+
+<!-- <a  th:href=@"'insert?id='+${id}'&name='+${name}'&age='${age}">插入</a>-->
+<!--<a th:href="@{/getParam(id=1,name='etc')}" >跳转</a>-->
+<!--    &lt;!&ndash; 获取作用域值&ndash;&gt;-->
+<!--<a th:href="@{/getParam(name=${name})}">跳转二</a>-->
+<!--<a th:href="'selectAll?pageNum='+${i}" th:text="${i}"></a>-->
+<!--    <a th:href="@{/star/insert(id=${id},name=${name},age=${age}}"></a>-->
+<!--<a th:href="@{/star/insert(id=${id},name=${name},age=${age})}">插入</a>-->
+<!--    http://localhost:8082/star/insert?id=16&name=lily&age=20-->
+
+
+
+</span>
+</body>
+</html>

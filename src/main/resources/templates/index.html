@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:color="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:text="${name}"></div>
+<div th:text="${session.gender}"></div>
+<input type="text" th:value="${name}">
+<div th:if="${session.gender == 'male'}">男</div>
+<div th:if="${session.gender == 'female'}">女</div>
+<br>
+<a href="star/selectAll">查询所有star</a>
+</body>
+</html>
